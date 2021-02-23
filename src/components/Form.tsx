@@ -1,7 +1,8 @@
 import React, {FormEventHandler, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import '../index.css';
-import '../firebase/config';
+import db from '../firebase/config';
+import { isTemplateTail } from 'typescript';
 
 type FormElement = React.FormEvent<HTMLFormElement>;
 
@@ -10,7 +11,9 @@ interface IValor {
     done: boolean
 }
 
+const subirData =()=>{
 
+}
 
 function Form (): JSX.Element {
 
@@ -24,6 +27,12 @@ function Form (): JSX.Element {
         console.log(valores);
         setValor('');
         valorInput.current?.focus();   
+        const temp = {
+            valor: valor,
+        }
+        db.collection('valores').add(temp);
+
+        
     }
 
     const addValor = (valor: string) => {
