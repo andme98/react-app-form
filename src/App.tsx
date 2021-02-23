@@ -9,7 +9,7 @@ function App(): JSX.Element {
   const [valores, setValores] = useState([]);
   return (
     <>
-      <h1>-Typing APP- </h1>
+      <h1>-Typing APP-</h1>
       <hr></hr>
       <h2>Ingrese texto:</h2>
       <Form />
