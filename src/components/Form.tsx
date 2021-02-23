@@ -1,6 +1,7 @@
-import React, {FormEventHandler, useState} from 'react';
+import React, {FormEventHandler, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import '../index.css';
+import '../firebase/config';
 
 type FormElement = React.FormEvent<HTMLFormElement>;
 
@@ -15,12 +16,14 @@ function Form (): JSX.Element {
 
     const [valor, setValor] = useState<string>('');
     const [valores, setvalores] = useState<IValor[]>([]);
+    const valorInput = useRef<HTMLInputElement>(null);
 
     const handleSubmit = (e:FormElement) => {
         e.preventDefault();
         addValor(valor);
         console.log(valores);
-        setValor('')            
+        setValor('');
+        valorInput.current?.focus();   
     }
 
     const addValor = (valor: string) => {
@@ -43,7 +46,7 @@ function Form (): JSX.Element {
     return(
         <>
             <form onSubmit={handleSubmit}>
-                <input autoFocus type="text" value={valor} onChange={
+                <input ref={valorInput} autoFocus type="text" value={valor} onChange={
                         (e) => {
                             //console.log(e.target.value)
                             setValor(e.target.value)
